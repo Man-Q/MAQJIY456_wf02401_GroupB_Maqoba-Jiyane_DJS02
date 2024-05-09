@@ -1,5 +1,6 @@
 const form = document.querySelector("[data-form]");
 const result = document.querySelector("[data-result]");
+const body = document.querySelector("body");
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -7,8 +8,13 @@ form.addEventListener("submit", (event) => {
 
   const { dividend, divider } = Object.fromEntries(entries);
 
-  if (Number(dividend) === NaN || Number(divider) === NaN) {
-    throw "Something critical went wrong. Please reload the page";
+  const test = isNaN(dividend)
+  
+  console.log(test)
+
+  if (isNaN(dividend) || isNaN(divider)) {
+    body.innerText = "Something critical went wrong. Please reload the page";
+    throw new Error("Something critical went wrong. Please reload the page");
   }
 
   if (dividend === "" || divider === "") {
